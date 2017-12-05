@@ -75,10 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
+    'hostname' => 'localhost',
+    'username' => 'root',
+    'database' => 'android',
+//    'password' => 'AsEfThUk86',
 	'password' => '',
-	'database' => 'android',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -94,3 +95,6 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+//	'password' => 'AsEfThUk86',
+//    'database' => 'android',

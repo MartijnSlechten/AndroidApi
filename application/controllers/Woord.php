@@ -7,23 +7,22 @@ class Woord extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+
     }
 
     public function get($id)
     {
-        $this->load->model('woord_model');
-        $object = $this->woord_model->get($id);
+        $this->load->model('Woord_model');
+        $object = $this->Woord_model->get($id);
         echo json_encode($object);
     }
 
     public function getAll()
     {
-        $this->load->model('woord_model');
-        $objecten = $this->woord_model->getAll();
+        $this->load->model('Woord_model');
+        $objecten = $this->Woord_model->getAll();
         echo json_encode($objecten);
     }
-
-
 
     /*
     public function schrijfJSONObject()

@@ -18,7 +18,9 @@ class Woord_model extends CI_Model {
     {
         $this->db->order_by('naam', 'asc');
         $query = $this->db->get('woorden');
-        return $query->result();
+        $result = $query->result_array();
+        shuffle($result);
+        return $result;
     }
 
     /*
