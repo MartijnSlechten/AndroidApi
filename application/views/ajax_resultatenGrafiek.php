@@ -1,3 +1,4 @@
+<p>grafiek</p>
 <?php if ($metingenInfo->aantalMetingen > 0) { ?>
     <br>
     <div class="viewList">

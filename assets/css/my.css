@@ -84,12 +84,12 @@ a.notClickable{
     cursor: pointer;
     text-shadow: 0.5px 0.5px black;
 }
-.switchCover{
+.switchGrafiek{
     float: left;
     margin: 4px;
     color: black;
 }
-.switchList{
+.switchLijst{
     float: left;
     margin: 4px;
     color: white;

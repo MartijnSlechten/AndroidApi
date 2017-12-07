@@ -59,7 +59,7 @@ class Resultaten extends CI_Controller
         if ($view == "lijst") {
             $this->load->view('ajax_resultatenLijst', $data);
         } else {
-            $this->load->view('ajax_resultaten', $data);
+            $this->load->view('ajax_resultatenGrafiek', $data);
         }
     }
 
