@@ -14,11 +14,14 @@ class Resultaat_model extends CI_Model
         return $this->db->count_all_results('meting');
     }
 
-    function get_laatsteMetingen($aantal)
+    function get_eenAantalMetingen($aantal)
     {
-//        $this->db->where('nametingDatum is NOT NULL', NULL, FALSE);
+        $this->db->where('nametingDatum is NOT NULL', NULL, FALSE);
         $this->db->order_by('voormetingDatum', 'desc');
-        $this->db->limit($aantal);
+        // enkel limit instellen wanneer het 'aantal' een cijfer is (wat niet het geval is bij 'getAlleMetingen()' )
+        if ($aantal != "alles") {
+            $this->db->limit($aantal);
+        }
         $query = $this->db->get('meting');
 
         // een rij of rijen terug geven
@@ -36,22 +39,6 @@ class Resultaat_model extends CI_Model
         return $query->row();
     }
 
-
-
-//    function get_laatsteMetingen($aantal,$soortMeting) {
-//        $this->db->order_by('datum', 'desc');
-//        $this->db->limit($aantal);
-//
-//        $query = $this->db->get($soortMeting);
-//
-//        // een rij of rijen terug geven
-//        if($aantal == 1){
-//            return $query->row();
-//        }else{
-//            return $query->result();
-//        }
-//    }
-
     function get_metingenOpDatum($zoekstring)
     {
         $this->db->where('nametingDatum is NOT NULL', NULL, FALSE);
@@ -62,25 +49,7 @@ class Resultaat_model extends CI_Model
     }
 
 
-//    function get($id)
-//    {
-//        $this->db->where('id', $id);
-//        $query = $this->db->get('woorden');
-//        return $query->row();
-//    }
-//
-//    function getAll()
-//    {
-//        $this->db->order_by('naam', 'asc');
-//        $query = $this->db->get('woorden');
-//        $result = $query->result_array();
-//        shuffle($result);
-//        return $result;
-//    }
-
-
-//    testdata genereren
-
+    // testdata genereren
     function insertMetingen($datum1, $datum2)
     {
         $meting = new stdClass();
@@ -92,8 +61,8 @@ class Resultaat_model extends CI_Model
 
     function insertVoormetingen($metingId)
     {
-        $getal1 = rand(1, 10);
-        $duur = "0:" . rand(1, 30) . ":" . rand(1, 59);
+        $getal1 = rand(1, 7);
+        $duur = "0:" . rand(1, 35) . ":" . rand(1, 59);
 
         $voormeting = new stdClass();
         $voormeting->metingId = $metingId;
@@ -107,17 +76,17 @@ class Resultaat_model extends CI_Model
 
     function insertNametingen($metingId)
     {
-        $getal1 = rand(1, 10);
-        $duur = "0:" . rand(1, 30) . ":" . rand(1, 59);
+        $getal1 = rand(2, 10);
+        $duur = "0:" . rand(1, 25) . ":" . rand(1, 39);
 
-        $voormeting = new stdClass();
-        $voormeting->metingId = $metingId;
-        $voormeting->aantalJuist = $getal1;
-        $voormeting->aantalFout = 10 - $getal1;
-        $voormeting->aantalTotaal = 10;
-        $voormeting->duur = $duur;
+        $nameting = new stdClass();
+        $nameting->metingId = $metingId;
+        $nameting->aantalJuist = $getal1;
+        $nameting->aantalFout = 10 - $getal1;
+        $nameting->aantalTotaal = 10;
+        $nameting->duur = $duur;
 
-        $this->db->insert('nametingen', $voormeting);
+        $this->db->insert('nametingen', $nameting);
     }
 
 }

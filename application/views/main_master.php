@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" href="<?php echo base_url(); ?>/Raspi.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css">
-<!--    <link rel="stylesheet"-->
-<!--          href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">-->
+    <!--    <link rel="stylesheet"-->
+    <!--          href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">-->
 
     <title>Fonologisch Verkennen</title>
 
@@ -68,12 +68,14 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-<!--                            <li>-->
-<!--                                <a href="--><?php //echo site_url('/comedy') ?><!--">Comedy</a>-->
-<!--                            </li>-->
+                            <!--                            <li>-->
+                            <!--                                <a href="--><?php //echo site_url('/comedy')
+                            ?><!--">Comedy</a>-->
+                            <!--                            </li>-->
                             <li>
                                 <a data-toggle="tooltip" title="Resultaten" data-placement="bottom"
-                                   href="<?php echo site_url('/home/resultaten') ?>"> <?php echo '<i class="fa fa-bar-chart" aria-hidden="true"></i> ' ?>Resultaten</a>
+                                   href="<?php echo site_url('/home/resultaten') ?>"> <?php echo '<i class="fa fa-bar-chart" aria-hidden="true"></i> ' ?>
+                                    Resultaten</a>
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -82,7 +84,8 @@
                                    href="<?php echo site_url('/home/profile') ?>"><?php echo '<i class="fa fa-user-circle-o" aria-hidden="true"></i> ' . ucfirst($user->voornaam) . " " . ucfirst($user->achternaam) ?></a>
                             </li>
                             <li>
-                                <a data-toggle="tooltip" title="Logout" data-placement="bottom" href="<?php echo site_url('/home/afmelden') ?>"> <?php echo '<i class="fa fa-sign-out" aria-hidden="true"></i> ' ?></a>
+                                <a data-toggle="tooltip" title="Logout" data-placement="bottom"
+                                   href="<?php echo site_url('/home/afmelden') ?>"> <?php echo '<i class="fa fa-sign-out" aria-hidden="true"></i> ' ?></a>
                             </li>
                         </ul>
 
@@ -138,18 +141,20 @@
         </div>
     <?php } ?>
     <!-- /.row -->
-    <hr>
-    <!-- Footer -->
-    <footer>
+</div>
+<div class="footer navbar-fixed-bottom" style="padding-top:10px; border-top:1px solid darkgray;background-color:lightgrey">
+    <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-xs-12" >
+                <p class="text-xs-center" style="font-size:12px">&copy; Copyright 2018 - Manon Franck. All rights reserved.</p>
             </div>
         </div>
-    </footer>
-    <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 </body>
 </html>

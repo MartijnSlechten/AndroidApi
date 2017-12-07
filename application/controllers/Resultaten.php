@@ -22,28 +22,27 @@ class Resultaten extends CI_Controller
             }
         }
     }
-
-    function p($object = null)
-    {
-        ob_start();                    // start buffer capture
-        var_dump($object);           // dump the values
-        $contents = ob_get_contents(); // put the buffer into a variable
-        ob_end_clean();                // end capture
-        error_log($contents);        // log contents of the result of var_dump( $object )
-    }
-
-
-    public function ajax_laatsteMetingen()
+    public function ajax_metingenViaZoekfunctie()
     {
         $view = $this->input->get('view');
-        $aantal = $this->input->get('aantal');
+        $zoekdata = $this->input->get('zoekdata');
+        $zoekfunctie = $this->input->get('zoekfunctie');
         $metingen = new stdClass(); // deze wordt altijd opgevuld als array, ookal is er maar 1 rij (object) opgehaald
 
-        // indien maar 1 meting ophalen -> het meting object als array opslaan
-        if ($aantal == 1) {
-            $metingen = array($this->Resultaat_model->get_laatsteMetingen($aantal));
-        } else {
-            $metingen = $this->Resultaat_model->get_laatsteMetingen($aantal);
+        // metingen ophalen
+        if($zoekfunctie == "alleMetingen"){
+            $metingen = $this->Resultaat_model->get_eenAantalMetingen("alles");
+        }elseif($zoekfunctie == "opAantal"){
+            // zoekdata = het 'aantal' metingen op te halen
+            if ($zoekdata == 1) {
+                // indien maar 1 meting ophalen -> het meting object als array opslaan
+                $metingen = array($this->Resultaat_model->get_eenAantalMetingen($zoekdata)); //object als array opslaan
+            } else {
+                $metingen = $this->Resultaat_model->get_eenAantalMetingen($zoekdata);
+            }
+        }elseif($zoekfunctie == "opDatum"){
+            // zoekdata = een deel van een string (van een datum) op metingen op te halen
+            $metingen = $this->Resultaat_model->get_metingenOpDatum($zoekdata);
         }
 
         // elke meting opvullen met bijhorende voor- en nameting
@@ -51,28 +50,8 @@ class Resultaten extends CI_Controller
             $meting->voormeting = $this->Resultaat_model->get_soortMeting_byMetingId($meting->id, "voormetingen");
             $meting->nameting = $this->Resultaat_model->get_soortMeting_byMetingId($meting->id, "nametingen");
         }
-        $data['metingen'] = $metingen;
-        $data['metingenInfo'] = $this->getInfoOverMetingen($metingen);
 
-        // de juiste view laten zien (lijst of grafiek)
-        if ($view == "lijst") {
-            $this->load->view('ajax_resultatenLijst', $data);
-        } else {
-            $this->load->view('ajax_resultaten', $data);
-        }
-    }
-
-    public function ajax_metingenOpDatum()
-    {
-        $view = $this->input->get('view');
-        $zoekstring = $this->input->get('zoekstring');
-        $metingen = $this->Resultaat_model->get_metingenOpDatum($zoekstring);
-
-        // elke meting opvullen met bijhorende voor- en nameting
-        foreach ($metingen as $meting) {
-            $meting->voormeting = $this->Resultaat_model->get_soortMeting_byMetingId($meting->id, "voormetingen");
-            $meting->nameting = $this->Resultaat_model->get_soortMeting_byMetingId($meting->id, "nametingen");
-        }
+        //metingen opslaan en metingInfo (gemiddeldes van de metingen) maken/berekenen
         $data['metingen'] = $metingen;
         $data['metingenInfo'] = $this->getInfoOverMetingen($metingen);
 
@@ -91,8 +70,8 @@ class Resultaten extends CI_Controller
         $aantalMetingen = 1;
         if (count($metingen) > 0) {
             $aantalMetingen = count($metingen);
-
         }
+
         $totaalJuist_v = 0;
         $totaalFout_v = 0;
         $totaalDuur_v = 0;
@@ -103,48 +82,23 @@ class Resultaten extends CI_Controller
         foreach ($metingen as $meting) {
             $totaalJuist_v += $meting->voormeting->aantalJuist;
             $totaalFout_v += $meting->voormeting->aantalFout;
-                $totaalDuur_v += $meting->voormeting->duur;
+            $totaalDuur_v += strtotime($meting->voormeting->duur);
             $totaalJuist_n += $meting->nameting->aantalJuist;
             $totaalFout_n += $meting->nameting->aantalFout;
-                $totaalDuur_v += $meting->nameting->duur;
+            $totaalDuur_n += strtotime($meting->nameting->duur);
         }
+        $gem_v = date('H:i,s',($totaalDuur_v / $aantalMetingen));
+        $gem_n = date('H:i,s',($totaalDuur_n / $aantalMetingen));
 
         $metingenInfo->voormetingAantalJuist = ($totaalJuist_v / $aantalMetingen);
         $metingenInfo->voormetingAantalFout = ($totaalFout_v / $aantalMetingen);
-        $metingenInfo->voormetingDuur = ($totaalDuur_v / $aantalMetingen);
+        $metingenInfo->voormetingDuur = substr($gem_v, 3, strlen($gem_v)) . "min";
         $metingenInfo->nametingAantalJuist = ($totaalJuist_n / $aantalMetingen);
         $metingenInfo->nametingAantalFout = ($totaalFout_n / $aantalMetingen);
-        $metingenInfo->nametingDuur = ($totaalDuur_n / $aantalMetingen);
+        $metingenInfo->nametingDuur = substr($gem_n, 3, strlen($gem_n)) . "min";
 
         return $metingenInfo;
     }
-
-
-
-
-
-
-
-
-//    public function ajax_laatsteMetingen()
-//    {
-//        $view = $this->input->get('view');
-//        $aantal = $this->input->get('aantal');
-//
-//        // indien maar 1 meting ophalen -> het meting object als array opslaan
-//        if ($aantal == 1) {
-//            $data['resultaten'] = array($this->Resultaat_model->get_laatsteMetingen($aantal));
-//        } else {
-//            $data['resultaten'] = $this->Resultaat_model->get_laatsteMetingen($aantal);
-//        }
-//
-//        // de juiste view laten zien (lijst of grafiek)
-//        if ($view == "lijst") {
-//            $this->load->view('ajax_resultatenLijst', $data);
-//        } else {
-//            $this->load->view('ajax_resultaten', $data);
-//        }
-//    }
 
 
 }

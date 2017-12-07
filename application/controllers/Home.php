@@ -69,7 +69,7 @@ class Home extends CI_Controller
         $this->load->model('Resultaat_model');
 
         $record = 0;
-        $recordsAantal = 250;
+        $recordsAantal = 1000;
         $datumVeranderen = 0;
 
 
