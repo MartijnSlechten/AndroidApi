@@ -52,34 +52,51 @@ class Home extends CI_Controller
     }
 
     public function resultaten() {
+        $this->load->model('Resultaat_model');
+
         // naar de pagina gaan om de resultaten van de android app 'fonologisch verkennen' te bekijken via database records
         $data['title'] = '';
         $data['nobox'] = true;
         $data['user'] = $this->authex->getUserInfo();
         $data['footer'] = '';
-//        $data['infoMovies'] = $this->authex->getCountMovies();
-//        $data['infoEpisodes'] = $this->authex->getCountEpisodes();
+        $data['aantalMetingen'] = $this->Resultaat_model->get_countMetingen();
 
         $partials = array('header' => 'main_header', 'content' => 'resultaten');
         $this->template->load('main_master', $partials, $data);
     }
 
     public function testData() {
+        $this->load->model('Resultaat_model');
 
-        $recordsAantal = 50;
         $record = 0;
+        $recordsAantal = 250;
+        $datumVeranderen = 0;
+
+
+//        $datum = date("Y-m-d H:i:s");
+        $datum = new DateTime('2017-11-01 20:24:00');
+        $datum2 = new DateTime('2017-11-01 20:24:00');
+
+        //$datum->format('Y-m-d H:i:s');
+
         while($record < $recordsAantal){
+            $datumVeranderen++;
+            if($datumVeranderen == 5){
+                $datumVeranderen=0;
+                $datum->modify('+1 day');
+                $datum2->modify('+1 day');
+            }
+            $datum->modify('+10 minutes');
+            $datum2->modify('+10 minutes');
+
             $record++;
-            $this->load->model('Resultaat_model');
-            $id = $this->Resultaat_model->insertVoormetingen();
+            $metingId = $this->Resultaat_model->insertMetingen($datum,$datum2);
+
+            $this->Resultaat_model->insertVoormetingen($metingId);
+            $this->Resultaat_model->insertNametingen($metingId);
+
         }
-        $recordsAantal2 = 50;
-        $record2 = 0;
-        while($record2 < $recordsAantal2){
-            $record2++;
-            $this->load->model('Resultaat_model');
-            $id = $this->Resultaat_model->insertNametingen();
-        }
+
 //        log_message('error', 'Some variable did not contain a value.');
         redirect('home/index');
 
