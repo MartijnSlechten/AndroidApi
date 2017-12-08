@@ -17,7 +17,7 @@ class Resultaat_model extends CI_Model
     function get_eenAantalMetingen($aantal)
     {
         $this->db->where('nametingDatum is NOT NULL', NULL, FALSE);
-        $this->db->order_by('voormetingDatum', 'desc');
+        $this->db->order_by('id', 'desc');
         // enkel limit instellen wanneer het 'aantal' een cijfer is (wat niet het geval is bij 'getAlleMetingen()' )
         if ($aantal != "alles") {
             $this->db->limit($aantal);
@@ -43,7 +43,7 @@ class Resultaat_model extends CI_Model
     {
         $this->db->where('nametingDatum is NOT NULL', NULL, FALSE);
         $this->db->like('nametingDatum', $zoekstring, 'after');
-        $this->db->order_by('voormetingDatum', 'desc');
+        $this->db->order_by('id', 'desc');
         $query = $this->db->get('meting');
         return $query->result();
     }
