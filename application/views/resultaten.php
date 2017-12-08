@@ -8,7 +8,6 @@
 
     // ajax functies
     function haal_metingenViaZoekfunctie(zoekfunctie, zoekdata) {
-        alert(laatsteView);
         $.ajax({
             type: "GET",
             url: site_url + "/resultaten/ajax_metingenViaZoekfunctie",
@@ -27,13 +26,9 @@
     }
 
     function reloadAjax() {
-        window[laatsteAjaxFunctie](laatsteZoekfunctie,laatsteZoekdata);
-
-//        if (laatsteVar == "gesorteerd") {
-//            window[laatsteAjaxFunctie](vtaal, vtype, vduurVan, vduurTot, vgrootteVan, vgrootteTot, vjaarVan, vjaarTot);
-//        } else {
-//            window[laatsteAjaxFunctie](laatsteZoekfunctie,laatsteZoekdata);
-//        }
+        if (laatsteAjaxFunctie != "") {
+            window[laatsteAjaxFunctie](laatsteZoekfunctie, laatsteZoekdata);
+        }
     }
 
     // klik functies
@@ -41,13 +36,13 @@
         $("#toonLaatsteMeting").click(function () {
             $('#datum').val("");
             $('#aantal').val("");
-            haal_metingenViaZoekfunctie("opAantal",1);
+            haal_metingenViaZoekfunctie("opAantal", 1);
         });
 
         $("#toonAlleMetingen").click(function () {
             $('#datum').val("");
             $('#aantal').val("");
-            haal_metingenViaZoekfunctie("alleMetingen",1);
+            haal_metingenViaZoekfunctie("alleMetingen", 1);
         });
 
         $("#aantal").keyup(function () {
@@ -55,7 +50,7 @@
             if ($(this).val() == "") {
                 $("#resultaat").html("");
             } else {
-                haal_metingenViaZoekfunctie("opAantal",$(this).val());
+                haal_metingenViaZoekfunctie("opAantal", $(this).val());
             }
         });
 
@@ -64,25 +59,22 @@
             if ($(this).val() == "") {
                 $("#resultaat").html("");
             } else {
-                haal_metingenViaZoekfunctie("opDatum",$(this).val());
+                haal_metingenViaZoekfunctie("opDatum", $(this).val());
             }
         });
 
         $("#switchLijst").click(function () {
-            $(".switchLijst").css({"color": "white", "cursor": "pointer", "text-shadow":"0.5px 0.5px black"});
-            $(".switchGrafiek").css({"color": "black", "cursor": "default","text-shadow":"0px 0px white"});
+            $(".switchLijst").css({"color": "white", "cursor": "pointer", "text-shadow": "0.5px 0.5px black"});
+            $(".switchGrafiek").css({"color": "black", "cursor": "default", "text-shadow": "0px 0px white"});
             laatsteView = "lijst";
-            if(laatsteAjaxFunctie != ""){
-                reloadAjax();
-            }
+            reloadAjax();
         });
+
         $("#switchGrafiek").click(function () {
-            $(".switchLijst").css({"color": "black", "cursor": "default","text-shadow":"0px 0px white"});
-            $(".switchGrafiek").css({"color": "white", "cursor": "pointer", "text-shadow":"0.5px 0.5px black"});
+            $(".switchLijst").css({"color": "black", "cursor": "default", "text-shadow": "0px 0px white"});
+            $(".switchGrafiek").css({"color": "white", "cursor": "pointer", "text-shadow": "0.5px 0.5px black"});
             laatsteView = "grafiek";
-            if(laatsteAjaxFunctie != ""){
-                reloadAjax();
-            }
+            reloadAjax();
         });
 
     });

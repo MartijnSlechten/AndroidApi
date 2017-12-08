@@ -4,12 +4,9 @@ require_once("PHPDebug.php");
 $debug = new PHPDebug();
 
 
-class Home extends CI_Controller
-{
+class Home extends CI_Controller {
 
-
-    public function index()
-    {
+    public function index() {
         $data['title'] = '';
         $data['nobox'] = true;
         $data['user'] = $this->authex->getUserInfo();
@@ -19,8 +16,7 @@ class Home extends CI_Controller
         $this->template->load('main_master', $partials, $data);
     }
 
-    public function login()
-    {
+    public function login() {
         // toont een pagina om door een form in te loggen
         $data['title'] = 'Aanmelden';
         $data['user'] = $this->authex->getUserInfo(); // nodig voor de links in navigatie
@@ -30,8 +26,7 @@ class Home extends CI_Controller
         $this->template->load('main_master', $partials, $data);
     }
 
-    public function aanmelden()
-    {
+    public function aanmelden() {
         // is de action van de form van de loginpagina
         clearstatcache();
         $gebruikersnaam = $this->input->post('gebruikersnaam');
@@ -39,13 +34,13 @@ class Home extends CI_Controller
 
         if ($this->authex->login($gebruikersnaam, $password)) {
             redirect('home/index');
-        } else {
+        }
+        else {
             redirect('home/fout');
         }
     }
 
-    public function afmelden()
-    {
+    public function afmelden() {
         // is de function om af te melden en te redirecten naar de home pagina
         $this->authex->logout();
         redirect('home/index');
@@ -65,24 +60,22 @@ class Home extends CI_Controller
         $this->template->load('main_master', $partials, $data);
     }
 
+    // TESTDATA
     public function testData() {
         $this->load->model('Resultaat_model');
 
         $record = 0;
         $recordsAantal = 1000;
         $datumVeranderen = 0;
-
-
-//        $datum = date("Y-m-d H:i:s");
+        // $datum = date("Y-m-d H:i:s");
         $datum = new DateTime('2017-11-01 20:24:00');
         $datum2 = new DateTime('2017-11-01 20:24:00');
-
         //$datum->format('Y-m-d H:i:s');
 
-        while($record < $recordsAantal){
+        while ($record < $recordsAantal) {
             $datumVeranderen++;
-            if($datumVeranderen == 5){
-                $datumVeranderen=0;
+            if ($datumVeranderen == 5) {
+                $datumVeranderen = 0;
                 $datum->modify('+1 day');
                 $datum2->modify('+1 day');
             }
@@ -90,22 +83,14 @@ class Home extends CI_Controller
             $datum2->modify('+10 minutes');
 
             $record++;
-            $metingId = $this->Resultaat_model->insertMetingen($datum,$datum2);
+            $metingId = $this->Resultaat_model->insertMetingen($datum, $datum2);
 
             $this->Resultaat_model->insertVoormetingen($metingId);
             $this->Resultaat_model->insertNametingen($metingId);
 
         }
-
-//        log_message('error', 'Some variable did not contain a value.');
         redirect('home/index');
-
     }
-
-
-
-
-
 
 
 }

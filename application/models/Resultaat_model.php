@@ -48,6 +48,57 @@ class Resultaat_model extends CI_Model
         return $query->result();
     }
 
+    function insertMeting($datum1, $datum2=null)
+    {
+        $meting = new stdClass();
+        $meting->voormetingDatum = $datum1->format('Y-m-d H:i:s');
+        if($datum2!=null){
+            $meting->nametingDatum = $datum2->format('Y-m-d H:i:s');
+        }
+        $this->db->insert('meting', $meting);
+        return $this->db->insert_id();
+    }
+
+    function updateMeting($datum,$metingId)
+    {
+        // de nametinDatum van de meting updaten wanneer het een nameting is
+        // (tijdens een insert van meting bij voormeting is de nametingDatum null)
+        $meting = new stdClass();
+        $meting->nametingDatum = $datum->format('Y-m-d H:i:s');
+        $this->db->where('id',$metingId);
+        $this->db->update('meting', $meting);
+    }
+
+    function insertVoormeting($metingId,$meting)
+    {
+        $voormeting = new stdClass();
+        $voormeting->metingId = $metingId;
+        $voormeting->aantalJuist = $meting->juist;
+        $voormeting->aantalFout = $meting->fout;
+        $voormeting->aantalTotaal = $meting->totaal;
+        $voormeting->duur = $meting->duur;
+
+        $this->db->insert('voormetingen', $voormeting);
+    }
+
+    function insertNameting($metingId,$meting)
+    {
+        $nameting = new stdClass();
+        $nameting->metingId = $metingId;
+        $nameting->aantalJuist = $meting->juist;
+        $nameting->aantalFout = $meting->fout;
+        $nameting->aantalTotaal = $meting->totaal;
+        $nameting->duur = $meting->duur;
+
+        $this->db->insert('nametingen', $nameting);
+    }
+
+
+
+
+
+
+
 
     // testdata genereren
     function insertMetingen($datum1, $datum2)
