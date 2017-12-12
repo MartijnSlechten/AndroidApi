@@ -16,7 +16,7 @@ class Resultaat_model extends CI_Model
 
     function get_eenAantalMetingen($aantal)
     {
-        $this->db->where('nametingDatum is NOT NULL', NULL, FALSE);
+        $this->db->where('nametingDatum IS NOT NULL', null, false);
         $this->db->order_by('id', 'desc');
         // enkel limit instellen wanneer het 'aantal' een cijfer is (wat niet het geval is bij 'getAlleMetingen()' )
         if ($aantal != "alles") {
@@ -32,9 +32,9 @@ class Resultaat_model extends CI_Model
         }
     }
 
-    function get_soortMeting_byMetingId($id, $soortMeting)
+    function get_soortMeting_byMetingId($metingId, $soortMeting)
     {
-        $this->db->where('id', $id);
+        $this->db->where('metingId', $metingId);
         $query = $this->db->get($soortMeting);
         return $query->row();
     }
@@ -52,9 +52,12 @@ class Resultaat_model extends CI_Model
     {
         $meting = new stdClass();
         $meting->voormetingDatum = $datum1->format('Y-m-d H:i:s');
+
         if($datum2!=null){
             $meting->nametingDatum = $datum2->format('Y-m-d H:i:s');
-        }
+        }else{
+            $meting->nametingDatum = null;
+}
         $this->db->insert('meting', $meting);
         return $this->db->insert_id();
     }

@@ -3,44 +3,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require_once("PHPDebug.php");
 $debug = new PHPDebug();
 
+class Resultaten extends CI_Controller {
 
-class Resultaten extends CI_Controller
-{
-
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
+
         $this->load->model('Resultaat_model');
         $this->load->library('authex');
 
         if (!$this->authex->loggedIn()) {
             redirect('home/login');
-        } else {
+        }
+        else {
             $user = $this->authex->GetUserInfo();
             if ($user->level < 5) {
                 redirect('home/login');
             }
         }
     }
-    public function ajax_metingenViaZoekfunctie()
-    {
+
+    public function ajax_metingenViaZoekfunctie() {
         $view = $this->input->get('view');
-        $zoekdata = $this->input->get('zoekdata');
         $zoekfunctie = $this->input->get('zoekfunctie');
+        $zoekdata = $this->input->get('zoekdata');
+
         $metingen = new stdClass(); // deze wordt altijd opgevuld als array, ookal is er maar 1 rij (object) opgehaald
 
         // metingen ophalen
-        if($zoekfunctie == "alleMetingen"){
+        if ($zoekfunctie == "alleMetingen") {
             $metingen = $this->Resultaat_model->get_eenAantalMetingen("alles");
-        }elseif($zoekfunctie == "opAantal"){
+        }
+        elseif ($zoekfunctie == "opAantal") {
             // zoekdata = het 'aantal' metingen op te halen
             if ($zoekdata == 1) {
                 // indien maar 1 meting ophalen -> het meting object als array opslaan
                 $metingen = array($this->Resultaat_model->get_eenAantalMetingen($zoekdata)); //object als array opslaan
-            } else {
+            }
+            else {
                 $metingen = $this->Resultaat_model->get_eenAantalMetingen($zoekdata);
             }
-        }elseif($zoekfunctie == "opDatum"){
+        }
+        elseif ($zoekfunctie == "opDatum") {
             // zoekdata = een deel van een string (van een datum) op metingen op te halen
             $metingen = $this->Resultaat_model->get_metingenOpDatum($zoekdata);
         }
@@ -58,13 +61,20 @@ class Resultaten extends CI_Controller
         // de juiste view laten zien (lijst of grafiek)
         if ($view == "lijst") {
             $this->load->view('ajax_resultatenLijst', $data);
-        } else {
-            $this->load->view('ajax_resultatenGrafiek', $data);
+        }
+        else {
+            if ($metingen != null) {
+                $data['title'] = '';
+                $data['nobox'] = true;
+                $data['user'] = $this->authex->getUserInfo();
+                $data['graphDataArray'] = $this->getGraphDataArray($metingen, $data['metingenInfo']);
+                $partials = array('header' => 'main_header', 'content' => 'ajax_resultatenGrafiek');
+                $this->template->load('main_master', $partials, $data);
+            }
         }
     }
 
-    public function getInfoOverMetingen($metingen)
-    {
+    public function getInfoOverMetingen($metingen) {
         $metingenInfo = new stdClass();
         $metingenInfo->aantalMetingen = count($metingen);
         $aantalMetingen = 1;
@@ -87,8 +97,8 @@ class Resultaten extends CI_Controller
             $totaalFout_n += $meting->nameting->aantalFout;
             $totaalDuur_n += strtotime($meting->nameting->duur);
         }
-        $gem_v = date('H:i,s',($totaalDuur_v / $aantalMetingen));
-        $gem_n = date('H:i,s',($totaalDuur_n / $aantalMetingen));
+        $gem_v = date('H:i,s', ($totaalDuur_v / $aantalMetingen));
+        $gem_n = date('H:i,s', ($totaalDuur_n / $aantalMetingen));
 
         $metingenInfo->voormetingAantalJuist = ($totaalJuist_v / $aantalMetingen);
         $metingenInfo->voormetingAantalFout = ($totaalFout_v / $aantalMetingen);
@@ -98,6 +108,32 @@ class Resultaten extends CI_Controller
         $metingenInfo->nametingDuur = substr($gem_n, 3, strlen($gem_n)) . "min";
 
         return $metingenInfo;
+    }
+
+    public function getGraphDataArray($metingen, $metingenInfo) {
+
+        $voormetingenJuist = [];
+        $nametingenJuist = [];
+        $voormetingenGemiddeldJuist = [];
+        $nametingenGemiddeldJuist = [];
+        foreach ($metingen as $meting) {
+            array_push($voormetingenJuist, $meting->voormeting->aantalJuist);
+            array_push($nametingenJuist, $meting->nameting->aantalJuist);
+            array_push($voormetingenGemiddeldJuist, $metingenInfo->voormetingAantalJuist);
+            array_push($nametingenGemiddeldJuist, $metingenInfo->nametingAantalJuist);
+        }
+        $mainArray = [];
+        array_push($mainArray, $voormetingenJuist);
+        array_push($mainArray, $nametingenJuist);
+        array_push($mainArray, $voormetingenGemiddeldJuist);
+        array_push($mainArray, $nametingenGemiddeldJuist);
+
+        return $mainArray;
+    }
+
+    public function vanGrafiekTerugNaarLijst() {
+        $this->globals['laatsteView'] = "terugVanGrafiekNaarLijst";
+        redirect('home/resultaten');
     }
 
 

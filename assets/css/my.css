@@ -8,88 +8,107 @@
     Danger: #d9534f;
 */
 
-.btn.size{
+.btn.size {
     width: 200px;
 }
-.btn.sizeSmall{
+
+.btn.sizeSmall {
     width: 110px;
 }
-.downloadActief{
-    color:#4AAF46;
+
+.downloadActief {
+    color: #4AAF46;
 }
-.downloadInactief{
-    color:#ED9F35;
+
+.downloadInactief {
+    color: #ED9F35;
     cursor: pointer;
 }
-.center{
+
+.center {
     text-align: center;
 }
-.textShadowSmall{
+
+.textShadowSmall {
     text-shadow: 0.5px 0.5px black;
 }
+
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-  background-color: lightgray;
+    background-color: lightgray;
 }
 
 /*NAVBAR - home and user icons------------------------------------------------*/
-.fa-home{
+.fa-home {
     color: #428bca;
 }
-.fa-home:hover{
+
+.fa-home:hover {
     color: white;
 }
-.fa-user-circle-o{
+
+.fa-user-circle-o {
     color: #428bca;
 }
-.devicon-devicon-plain i{
-    color:gray !important;
+
+.devicon-devicon-plain i {
+    color: gray !important;
 }
-.dropdownAddon{
+
+.dropdownAddon {
     margin-left: -3px;
 }
-.dropdownAddonBtn{
+
+.dropdownAddonBtn {
     background-color: #EAEAEA;
     width: 48px;
 }
-.dropdownAddonBtn:hover{
+
+.dropdownAddonBtn:hover {
     background-color: #EAEAEA;
     border-color: #C1C1C1;
     cursor: default;
 }
-.navbarDropdown ul{
+
+.navbarDropdown ul {
     list-style: none !important;
 }
-a.dropdown-item{
+
+a.dropdown-item {
     color: black !important;
-    font-size:14px !important;
+    font-size: 14px !important;
 }
-a.notClickable{
+
+a.notClickable {
     pointer-events: none;
     cursor: default;
 }
 
 /*Search functions------------------------------------------------------------*/
-.panel-heading{
-    height:40px;
+.panel-heading {
+    height: 40px;
 }
-.switchBasicSearch{
+
+.switchBasicSearch {
     float: right;
     margin: 4px;
     color: black;
 }
-.switchAdvancedSearch{
+
+.switchAdvancedSearch {
     float: right;
     margin: 4px;
     color: white;
     cursor: pointer;
     text-shadow: 0.5px 0.5px black;
 }
-.switchGrafiek{
+
+.switchGrafiek {
     float: left;
     margin: 4px;
     color: black;
 }
-.switchLijst{
+
+.switchLijst {
     float: left;
     margin: 4px;
     color: white;
@@ -98,59 +117,69 @@ a.notClickable{
 }
 
 /*moviesList.php - episodesList.php-------------------------------------------*/
-.viewList td:first-child{
+.viewList td:first-child {
     text-align: left;
     padding-left: 15px;
 }
-.viewList td:last-child{
+
+.viewList td:last-child {
     padding-right: 15px;
 }
-.viewList > table > thead > tr th{
+
+.viewList > table > thead > tr th {
     text-align: center !important;
 }
-.viewList > table thead > tr th:first-child{
+
+.viewList > table thead > tr th:first-child {
     text-align: left !important;
     padding-left: 20px !important;
 }
-.fa-sort{
+
+.fa-sort {
     cursor: pointer;
 }
+
 /*moviesInfo.php - episodesInfo.php-------------------------------------------*/
-.infoModal table td:first-child{
+.infoModal table td:first-child {
     text-align: left !important;
     padding-left: 13% !important;
 }
-.infoModal table td:last-child{
+
+.infoModal table td:last-child {
     text-align: left !important;
     /*margin-right: 20% !important;*/
 }
 
 .infoModal #episodesTable > thead > tr > th:nth-child(3),
-.infoModal #episodesTable > thead > tr > th:nth-child(4){
+.infoModal #episodesTable > thead > tr > th:nth-child(4) {
     padding-left: 25px !important;
 }
-.infoModal #episodesTable > tbody > tr > td:nth-child(1){
+
+.infoModal #episodesTable > tbody > tr > td:nth-child(1) {
     text-align: left !important;
     padding-left: 5% !important;
 }
-.infoModal #episodesTable > tbody > tr > td:nth-child(2){
+
+.infoModal #episodesTable > tbody > tr > td:nth-child(2) {
     text-align: left !important;
 }
 
 /* --- DROPDOWN LIST SEARCH------------------fsfsfdvdfvdfvdfvfxvdfxvpppppppf-*/
-.panelPadding{
+.panelPadding {
     padding-top: 13px;
 }
-.profileMail{
+
+.profileMail {
     font-size: 12px;
     font-weight: bold;
 }
 
 /*Covers----------------------------------------------------------------------*/
-div.covers{
+div.covers {
     margin: 2px;
     float: left;
 }
+
 div.covers img {
     border: 1px solid black;
     filter: brightness(60%);
@@ -158,53 +187,60 @@ div.covers img {
     width: 175px;
     height: 250px;
 }
-div.covers img:hover{
+
+div.covers img:hover {
     border: 1px solid white;
     filter: brightness(105%);
     box-shadow: inset 3px blue;
     border-radius: 12px;
 }
 
-
-
 /*index.php-------------------------------------------------------------------*/
 #ontwikkeling {
     background-color: #428bca;
     color: #ffffff;
     padding-top: 10px !important;
-    text-shadow: 0.5px  0.5px black;
+    text-shadow: 0.5px 0.5px black;
 }
-svg.banner { 
-    width: 100px; height: auto; 
+
+svg.banner {
+    width: 100px;
+    height: auto;
 }
+
 svg {
-    filter: drop-shadow( -0.75px -0.75px 1px black );
+    filter: drop-shadow(-0.75px -0.75px 1px black);
 }
-.ontwikkelIcoon h4{
+
+.ontwikkelIcoon h4 {
     color: white;
     text-align: center !important;
     font-size: 14px !important;
-    text-shadow:  0.5px  0.5px black;
+    text-shadow: 0.5px 0.5px black;
 }
-.ontwikkelIcoon div{
+
+.ontwikkelIcoon div {
     margin-top: 10px !important;
     margin-bottom: 15px !important;
 }
-img.materialize{
+
+img.materialize {
     height: auto;
     width: 100%;
     text-align: center;
     padding-top: 6%;
     padding-bottom: 7%;
 }
-img.apache{
+
+img.apache {
     height: auto;
-    width: 100%; 
+    width: 100%;
     padding-top: 38%;
     padding-bottom: 38%;
 }
+
 #informatie {
-    background: url('../images/app/bg1.jpg') no-repeat center center fixed; 
+    background: url('../images/app/bg1.jpg') no-repeat center center fixed;
     display: table;
     /*  height: 800px;*/
     position: relative;
@@ -214,21 +250,24 @@ img.apache{
     -o-background-size: cover;
     background-size: cover;
 }
+
 #informatie .panel {
     opacity: 0.80;
 }
-#informatie .panel-title{
+
+#informatie .panel-title {
     font-size: 24px;
 }
-#informatie .panel-body{
+
+#informatie .panel-body {
     text-align: justify;
     font-size: 18px;
 }
 
 /*info.php--------------------------------------------------------------------*/
 .containerGauge {
-    margin-top:20px;  
-    margin-bottom:20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     width: 200px;
     height: 100px;
     position: absolute;
@@ -237,33 +276,41 @@ img.apache{
     text-align: center;
     transform: translate(-50%, -50%); /**/
 }
+
 .containerGauge1 {
     top: 195px;
 }
+
 .containerGauge2 {
     top: 500px;
 }
+
 .containerGauge3 {
     top: 675px;
 }
+
 .containerGauge4 {
     top: 918px;
 }
+
 .containerGauge5 {
     top: 1225px;
 }
+
 .containerGauge6 {
     top: 1400px;
 }
+
 .gauge-a {
     z-index: 1;
     position: absolute;
-    background-color: rgba(255,255,255,.2);
+    background-color: rgba(255, 255, 255, .2);
     width: 200px;
     height: 100px;
     top: 0%;
-    border-radius: 250px 250px 0px 0px;/**/
+    border-radius: 250px 250px 0px 0px; /**/
 }
+
 .gauge-b {
     z-index: 3;
     position: absolute;
@@ -273,8 +320,9 @@ img.apache{
     top: 15px;
     margin-left: 15px;
     margin-right: 15px;
-    border-radius: 250px 250px 0px 0px;/**/
+    border-radius: 250px 250px 0px 0px; /**/
 }
+
 .gauge-c {
     z-index: 2;
     position: absolute;
@@ -283,32 +331,39 @@ img.apache{
     top: 100px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 0px 0px 200px 200px;/**/
+    border-radius: 0px 0px 200px 200px; /**/
     transform-origin: center top;
     transition: all 3.5s ease-in-out;
 }
+
 .containerGauge1 .gauge-c {
-    background: linear-gradient(to left, rgba(92,184,92,0.25) 0%, #5cb85c 100%);
+    background: linear-gradient(to left, rgba(92, 184, 92, 0.25) 0%, #5cb85c 100%);
 }
+
 .containerGauge2 .gauge-c {
-    background: linear-gradient(to left, rgba(66,139,202,0.25)  0%, #428bca 100%);
+    background: linear-gradient(to left, rgba(66, 139, 202, 0.25) 0%, #428bca 100%);
 }
+
 .containerGauge3 .gauge-c {
-    background: linear-gradient(to left, rgba(66,139,202,0.25)  0%, #428bca 100%);
+    background: linear-gradient(to left, rgba(66, 139, 202, 0.25) 0%, #428bca 100%);
 }
+
 .containerGauge4 .gauge-c {
-    background: linear-gradient(to left, rgba(237,159,53,0.25)  0%, #ED9F35 100%);
+    background: linear-gradient(to left, rgba(237, 159, 53, 0.25) 0%, #ED9F35 100%);
 }
+
 .containerGauge5 .gauge-c {
-    background: linear-gradient(to left, rgba(217,83,79,0.25) 0%, #d9534f 100%);
+    background: linear-gradient(to left, rgba(217, 83, 79, 0.25) 0%, #d9534f 100%);
 }
+
 .containerGauge6 .gauge-c {
-    background: linear-gradient(to left, rgba(217,83,79,0.25) 0%, #d9534f 100%);
+    background: linear-gradient(to left, rgba(217, 83, 79, 0.25) 0%, #d9534f 100%);
 }
+
 .gauge-data {
     z-index: 4;
     color: white;
-    font-size:12px;
+    font-size: 12px;
     line-height: 25px;
     position: absolute;
     width: 200px;
@@ -318,27 +373,30 @@ img.apache{
     margin-right: auto;
     transition: all 7s ease-out;
 }
+
 /*progress bars*/
 .progress-label {
     float: left;
     font-weight: normal;
-    width:75px;
+    width: 75px;
     text-align: left;
     margin-right: 2%;
 }
-.progress-bar{
-    color:white;
+
+.progress-bar {
+    color: white;
     text-shadow: 0.5px 0.5px solid black;
 }
 
 /*media screen----------------------------------------------------------------*/
-@media screen and (max-width: 560px) and (min-width: 0px){
+@media screen and (max-width: 560px) and (min-width: 0px) {
     div.covers {
         float: left;
         margin: 2px;
         width: 48%;
         height: 48%;
     }
+
     div.covers img {
         border: 1px solid black;
         filter: brightness(100%);
@@ -348,14 +406,17 @@ img.apache{
         /*  width: 175px;
             height: 250px;*/
     }
-    div.covers img:hover{
+
+    div.covers img:hover {
         border-radius: none;
     }
-    .panelPadding{
+
+    .panelPadding {
         padding-top: 1px;
     }
-    div.containerStatistieken{
-        visibility:  collapse;
+
+    div.containerStatistieken {
+        visibility: collapse;
     }
 }
 
@@ -364,8 +425,38 @@ img.apache{
 #resultatenLijstTable th:nth-child(8),
 #resultatenLijstTable td:nth-child(8),
 #resultatenLijstGemiddeldeTable th:nth-child(5),
-#resultatenLijstGemiddeldeTable td:nth-child(5){
+#resultatenLijstGemiddeldeTable td:nth-child(5) {
     border-left: 1px solid lightgray !important;
 }
+
+/*watermerk onder afbeelding*/
+.x-chart-watermark,
+div.pg_notify {
+    display: none !important;
+}
+
+/*watermerk op afbeelding*/
+#__chart1 canvas:first-child {
+    z-index: -99999 !important;
+    position: fixed;
+    left: -12000px !important;
+}
+
+div#__chart1 {
+    width: 100% !important;
+}
+
+/*.jqplot-target{*/
+/*position: relative !important;*/
+/*width: auto !important;*/
+/*!* max-width: 1000px; *! !* OPTIONAL *!*/
+/*min-width: 300px; !* OPTIONAL *!*/
+/*}*/
+
+.jqplot-table-legend {
+    margin-left: 85% !important;
+}
+
+
 
 

@@ -74,7 +74,7 @@
             $(".switchLijst").css({"color": "black", "cursor": "default", "text-shadow": "0px 0px white"});
             $(".switchGrafiek").css({"color": "white", "cursor": "pointer", "text-shadow": "0.5px 0.5px black"});
             laatsteView = "grafiek";
-            reloadAjax();
+            window.location.replace(site_url +"/resultaten/ajax_metingenViaZoekfunctie?view=grafiek&zoekfunctie=" + laatsteZoekfunctie + "&zoekdata=" + laatsteZoekdata);
         });
 
     });
