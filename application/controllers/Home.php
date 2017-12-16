@@ -65,7 +65,7 @@ class Home extends CI_Controller {
         $this->load->model('Resultaat_model');
 
         $record = 0;
-        $recordsAantal = 1000;
+        $recordsAantal = 250;
         $datumVeranderen = 0;
         // $datum = date("Y-m-d H:i:s");
         $datum = new DateTime('2017-11-01 20:24:00');

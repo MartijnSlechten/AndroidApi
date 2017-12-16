@@ -23,6 +23,13 @@ class Woord_model extends CI_Model {
         return $result;
     }
 
+    function getAll_objecten()
+    {
+        $this->db->order_by('naam', 'asc');
+        $query = $this->db->get('woorden');
+        return $query->result();
+    }
+
     /*
     function getAllSoortProduct()
     {
