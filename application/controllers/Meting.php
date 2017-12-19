@@ -6,6 +6,7 @@ class Meting extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('Resultaat_model');
+        $this->load->model('Klas_model');
     }
 
     public function insert($metingId) {
@@ -13,9 +14,14 @@ class Meting extends CI_Controller {
         $meting = json_decode($data);
         $meting->datum = new DateTime($meting->datum);
 
+        $naam = $meting->naam;
+        $klasId = $this->Klas_model->getByNaam($meting->klas);
+        $groep = $meting->groep;
+
         if ($metingId == 0) {
             // opslaan als voormeting
-            $metingId = $this->Resultaat_model->insertMeting($meting->datum);
+            $metingId = $this->Resultaat_model->insertMeting($meting->datum, $naam, $klasId, $groep);
+//            $metingId = $this->Resultaat_model->insertMeting($meting->datum,$meting->naam,$klasId,$meting->groep);
             $this->Resultaat_model->insertVoormeting($metingId, $meting);
         }
         else {

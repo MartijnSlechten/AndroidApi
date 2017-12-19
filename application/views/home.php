@@ -4,5 +4,5 @@
     <br>
     <br>
     <br>
-    <a href="<?php echo site_url('/home/testData') ?>"><button type="button" class="btn btn-default">generate metingen</button></a>
+<!--    <a href="--><?php //echo site_url('/home/testData') ?><!--"><button type="button" class="btn btn-default">generate metingen</button></a>-->
 

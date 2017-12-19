@@ -68,8 +68,8 @@ class Home extends CI_Controller {
         $recordsAantal = 250;
         $datumVeranderen = 0;
         // $datum = date("Y-m-d H:i:s");
-        $datum = new DateTime('2017-11-01 20:24:00');
-        $datum2 = new DateTime('2017-11-01 20:24:00');
+        $datum = new DateTime('2017-12-15 20:24:00');
+        $datum2 = new DateTime('2017-12-15 20:24:00');
         //$datum->format('Y-m-d H:i:s');
 
         while ($record < $recordsAantal) {
