@@ -47,7 +47,7 @@ class Home extends CI_Controller {
     }
 
     public function resultaten() {
-        $this->load->model('Resultaat_model');
+        $this->load->model('Meting_model');
 
         // naar de pagina gaan om de resultaten van de android app 'fonologisch verkennen' te bekijken via database records
         $data['title'] = '';
@@ -62,7 +62,7 @@ class Home extends CI_Controller {
 
     // TESTDATA
     public function testData() {
-        $this->load->model('Resultaat_model');
+        $this->load->model('Meting_model');
 
         $record = 0;
         $recordsAantal = 250;

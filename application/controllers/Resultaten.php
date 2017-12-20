@@ -8,7 +8,7 @@ class Resultaten extends CI_Controller {
     public function __construct() {
         parent::__construct();
 
-        $this->load->model('Resultaat_model');
+        $this->load->model('Meting_model');
         $this->load->library('authex');
 
         if (!$this->authex->loggedIn()) {
@@ -31,27 +31,27 @@ class Resultaten extends CI_Controller {
 
         // metingen ophalen
         if ($zoekfunctie == "alleMetingen") {
-            $metingen = $this->Resultaat_model->get_eenAantalMetingen("alles");
+            $metingen = $this->Meting_model->get_eenAantalMetingen("alles");
         }
         elseif ($zoekfunctie == "opAantal") {
             // zoekdata = het 'aantal' metingen op te halen
             if ($zoekdata == 1) {
                 // indien maar 1 meting ophalen -> het meting object als array opslaan
-                $metingen = array($this->Resultaat_model->get_eenAantalMetingen($zoekdata)); //object als array opslaan
+                $metingen = array($this->Meting_model->get_eenAantalMetingen($zoekdata)); //object als array opslaan
             }
             else {
-                $metingen = $this->Resultaat_model->get_eenAantalMetingen($zoekdata);
+                $metingen = $this->Meting_model->get_eenAantalMetingen($zoekdata);
             }
         }
         elseif ($zoekfunctie == "opDatum") {
             // zoekdata = een deel van een string (van een datum) op metingen op te halen
-            $metingen = $this->Resultaat_model->get_metingenOpDatum($zoekdata);
+            $metingen = $this->Meting_model->get_metingenOpDatum($zoekdata);
         }
 
         // elke meting opvullen met bijhorende voor- en nameting
         foreach ($metingen as $meting) {
-            $meting->voormeting = $this->Resultaat_model->get_soortMeting_byMetingId($meting->id, "voormetingen");
-            $meting->nameting = $this->Resultaat_model->get_soortMeting_byMetingId($meting->id, "nametingen");
+            $meting->voormeting = $this->Meting_model->get_soortMeting_byMetingId($meting->id, "voormetingen");
+            $meting->nameting = $this->Meting_model->get_soortMeting_byMetingId($meting->id, "nametingen");
         }
 
         //metingen opslaan en metingInfo (gemiddeldes van de metingen) maken/berekenen

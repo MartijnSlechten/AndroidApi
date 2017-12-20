@@ -2,20 +2,23 @@
 
 class Woord_model extends CI_Model {
 
-    function __construct()
-    {
+    function __construct() {
         parent::__construct();
     }
 
-    function get($id)
-    {
+    function get($id) {
         $this->db->where('id', $id);
         $query = $this->db->get('woorden');
         return $query->row();
     }
 
-    function getAll()
-    {
+    public function getWoordId_ByNaam($woord) {
+        $this->db->where('naam', $woord);
+        $query = $this->db->get('woorden');
+        return $query->row()->id;
+    }
+
+    function getAll() {
         $this->db->order_by('naam', 'asc');
         $query = $this->db->get('woorden');
         $result = $query->result_array();
@@ -23,8 +26,7 @@ class Woord_model extends CI_Model {
         return $result;
     }
 
-    function getAll_objecten()
-    {
+    function getAll_objecten() {
         $this->db->order_by('naam', 'asc');
         $query = $this->db->get('woorden');
         return $query->result();

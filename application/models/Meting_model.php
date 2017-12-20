@@ -1,6 +1,6 @@
 <?php
 
-class Resultaat_model extends CI_Model {
+class Meting_model extends CI_Model {
 
     function __construct() {
         parent::__construct();
