@@ -54,10 +54,34 @@ class Home extends CI_Controller {
         $data['nobox'] = true;
         $data['user'] = $this->authex->getUserInfo();
         $data['footer'] = '';
-        $data['aantalMetingen'] = $this->Resultaat_model->get_countMetingen();
+        $data['aantalMetingen'] = $this->Meting_model->get_countMetingen();
 
         $partials = array('header' => 'main_header', 'content' => 'resultaten');
         $this->template->load('main_master', $partials, $data);
+    }
+
+    //todo:
+    public function klassen() {
+        $this->load->model('Klas_model');
+
+        // naar de pagina gaan om de resultaten van de android app 'fonologisch verkennen' te bekijken via database records
+        $data['title'] = '';
+        $data['nobox'] = true;
+        $data['user'] = $this->authex->getUserInfo();
+        $data['footer'] = '';
+        $data['klassen'] = $this->Klas_model->getAll();
+
+        $partials = array('header' => 'main_header', 'content' => 'klassenToevoegen');
+        $this->template->load('main_master', $partials, $data);
+    }
+    public function klasOpslaan() {
+        $klasNaam = $this->input->post('klasNaam');
+
+        $this->load->model('Klas_model');
+$this->Klas_model->insertKlas($klasNaam);
+
+
+        redirect(site_url("/home/klassen"));
     }
 
     // TESTDATA
@@ -83,10 +107,10 @@ class Home extends CI_Controller {
             $datum2->modify('+10 minutes');
 
             $record++;
-            $metingId = $this->Resultaat_model->insertMetingen($datum, $datum2);
+            $metingId = $this->Meting_model->insertMetingen($datum, $datum2);
 
-            $this->Resultaat_model->insertVoormetingen($metingId);
-            $this->Resultaat_model->insertNametingen($metingId);
+            $this->Meting_model->insertVoormetingen($metingId);
+            $this->Meting_model->insertNametingen($metingId);
 
         }
         redirect('home/index');

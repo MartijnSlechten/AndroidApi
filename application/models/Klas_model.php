@@ -34,6 +34,12 @@ class Klas_model extends CI_Model {
         return $query->result();
     }
 
+    public function insertKlas($klasNaam){
+        $klas = new stdClass();
+        $klas->naam = $klasNaam;
+        $this->db->insert('klas',$klas);
+    }
+
     /*
     function getAllSoortProduct()
     {

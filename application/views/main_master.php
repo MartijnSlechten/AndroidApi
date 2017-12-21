@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Fonologisch Verkennen - Manon">
     <meta name="author" content="Axel Pauwels & Martijn Slechten">
-    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>/Raspi.png">
+    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>/ic_boek.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css">
     <!--    <link rel="stylesheet"-->
@@ -68,14 +68,15 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <!--                            <li>-->
-                            <!--                                <a href="--><?php //echo site_url('/comedy')
-                            ?><!--">Comedy</a>-->
-                            <!--                            </li>-->
+                            <li>
+                                <a data-toggle="tooltip" title="Klassen" data-placement="bottom"
+                                   href="<?php echo site_url('/home/klassen') ?>"> <?php echo '<i class="fa fa-graduation-cap" aria-hidden="true"></i> ' ?>
+                                    Klassen toevoegen</a>
+                            </li>
                             <li>
                                 <a data-toggle="tooltip" title="Resultaten" data-placement="bottom"
                                    href="<?php echo site_url('/home/resultaten') ?>"> <?php echo '<i class="fa fa-bar-chart" aria-hidden="true"></i> ' ?>
-                                    Resultaten</a>
+                                    Resultaten bekijken</a>
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -93,7 +94,8 @@
                     <?php
                     break;
             }
-        } else {
+        }
+        else {
             ?>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
@@ -127,7 +129,8 @@
         <div class="row text-center">
             <?php echo $content; ?>
         </div>
-    <?php } else { ?>
+    <?php }
+    else { ?>
         <div class="row">
             <div class="col-lg-12 hero-feature">
                 <div class="thumbnail" style="padding: 20px">
@@ -142,11 +145,13 @@
     <?php } ?>
     <!-- /.row -->
 </div>
-<div class="footer navbar-fixed-bottom" style="padding-top:10px; border-top:1px solid darkgray;background-color:lightgrey">
+<div class="footer navbar-fixed-bottom"
+     style="padding-top:10px; border-top:1px solid darkgray;background-color:lightgrey">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12" >
-                <p class="text-xs-center" style="font-size:12px">&copy; Copyright 2018 - Manon Franck. All rights reserved.</p>
+            <div class="col-xs-12">
+                <p class="text-xs-center" style="font-size:12px">&copy; Copyright 2018 - Manon Franck. All rights
+                    reserved.</p>
             </div>
         </div>
     </div>
