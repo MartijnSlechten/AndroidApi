@@ -4,8 +4,8 @@
         <h4>Bestaande klassen</h4>
         <br>
         <?php
-        foreach ($klassen as $klas){
-            echo '<p style="text-align: left">'. $klas->naam.'</p>'."\n";
+        foreach ($klassen as $klas) {
+            echo '<p style="text-align: left">' . $klas->naam . '</p>' . "\n";
         }
         ?>
     </div>

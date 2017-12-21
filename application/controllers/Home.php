@@ -74,12 +74,11 @@ class Home extends CI_Controller {
         $partials = array('header' => 'main_header', 'content' => 'klassenToevoegen');
         $this->template->load('main_master', $partials, $data);
     }
+
     public function klasOpslaan() {
         $klasNaam = $this->input->post('klasNaam');
-
         $this->load->model('Klas_model');
-$this->Klas_model->insertKlas($klasNaam);
-
+        $this->Klas_model->insertKlas($klasNaam);
 
         redirect(site_url("/home/klassen"));
     }
