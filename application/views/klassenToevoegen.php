@@ -8,6 +8,7 @@
             echo '<p style="text-align: left">' . $klas->naam . '</p>' . "\n";
         }
         ?>
+        <br>
     </div>
     <div class="col-sm-6">
         <h4>Klas toevoegen</h4>

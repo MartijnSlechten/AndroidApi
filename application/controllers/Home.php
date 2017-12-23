@@ -48,6 +48,7 @@ class Home extends CI_Controller {
 
     public function resultaten() {
         $this->load->model('Meting_model');
+        $this->load->model('Klas_model');
 
         // naar de pagina gaan om de resultaten van de android app 'fonologisch verkennen' te bekijken via database records
         $data['title'] = '';
@@ -55,7 +56,7 @@ class Home extends CI_Controller {
         $data['user'] = $this->authex->getUserInfo();
         $data['footer'] = '';
         $data['aantalMetingen'] = $this->Meting_model->get_countMetingen();
-
+        $data['dropdownOptions']=$this->Klas_model->getDropdownOptions();
         $partials = array('header' => 'main_header', 'content' => 'resultaten');
         $this->template->load('main_master', $partials, $data);
     }

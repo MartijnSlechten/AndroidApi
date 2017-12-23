@@ -403,8 +403,6 @@ img.apache {
         transition: none;
         width: 100%;
         height: 100%;
-        /*  width: 175px;
-            height: 250px;*/
     }
 
     div.covers img:hover {
@@ -424,11 +422,42 @@ img.apache {
 #resultatenLijstTable td:nth-child(3),
 #resultatenLijstTable th:nth-child(8),
 #resultatenLijstTable td:nth-child(8),
-#resultatenLijstGemiddeldeTable th:nth-child(5),
-#resultatenLijstGemiddeldeTable td:nth-child(5) {
+.resultatenLijstGemiddeldeTable th:nth-child(5),
+.resultatenLijstGemiddeldeTable td:nth-child(5) {
     border-left: 1px solid lightgray !important;
 }
 
+.resultatenLijstGemiddeldeTable td:first-child {
+    width: 150px;
+}
+
+.resultatenLijstTable tr:nth-child(5n+1) {
+    background-color: #E5E5E5;
+}
+.resultatenLijstGemiddeldeTable > thead > tr{
+    background-color: #E5E5E5;
+}
+
+.resultatenLijstTable thead tr {
+    background-color: transparent !important;
+}
+
+.resultatenLijstGemiddeldeTable th:first-child {
+    width: 175px;
+}
+
+.resultatenLijstGemiddeldeTable:first-of-type > tbody > tr:nth-child(3) {
+    height: 235px !important;
+}
+table{
+    font-size: 14px;
+}
+.myItalic {
+    /*font-style: italic;*/
+    /*font-size: 12px;*/
+}
+
+/***GRAFIEKEN***/
 /*watermerk onder afbeelding*/
 .x-chart-watermark,
 div.pg_notify {

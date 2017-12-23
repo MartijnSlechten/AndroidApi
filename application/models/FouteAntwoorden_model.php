@@ -15,5 +15,11 @@ class FouteAntwoorden_model extends CI_Model {
         $this->db->insert('fouteAntwoorden', $foutWoord);
     }
 
+    function get_byMetingId_and_soortMeting($metingId, $isVoormeting) {
+        $this->db->where('metingId ', $metingId);
+        $this->db->where('isVoormeting ', $isVoormeting);
+        $query = $this->db->get('fouteAntwoorden');
+        return $query->result();
+    }
 
 }

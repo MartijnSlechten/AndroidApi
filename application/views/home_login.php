@@ -46,7 +46,8 @@
         'value' => 'Login', 
         'class' => 'btn btn-primary size');
     echo form_submit($dataSubmit) . "\n";
-    echo form_close();
     echo '</div>' . "\n";
+
+    echo form_close();
     ?>
 </div>

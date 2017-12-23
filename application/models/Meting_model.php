@@ -43,6 +43,22 @@ class Meting_model extends CI_Model {
         return $query->result();
     }
 
+    function get_metingenOpNaam($zoekstring) {
+        $this->db->where('nametingDatum is NOT NULL', NULL, FALSE);
+        $this->db->like('naam', $zoekstring, 'after');
+        $this->db->order_by('id', 'desc');
+        $query = $this->db->get('meting');
+        return $query->result();
+    }
+
+    function get_metingenOpKlas($zoekstring) {
+        $this->db->where('nametingDatum is NOT NULL', NULL, FALSE);
+        $this->db->like('klasId', $zoekstring);
+        $this->db->order_by('id', 'desc');
+        $query = $this->db->get('meting');
+        return $query->result();
+    }
+
     function insertMeting($datum1, $naam, $klasId, $groep) {
         $meting = new stdClass();
         $meting->voormetingDatum = $datum1->format('Y-m-d H:i:s');

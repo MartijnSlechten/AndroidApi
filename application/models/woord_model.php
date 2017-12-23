@@ -18,52 +18,29 @@ class Woord_model extends CI_Model {
         return $query->row()->id;
     }
 
-    function getAll() {
+    function getAll($groep) {
         $this->db->order_by('naam', 'asc');
+//        $this->db->where('groep',10);
         $query = $this->db->get('woorden');
         $result = $query->result_array();
         shuffle($result);
         return $result;
     }
 
-    function getAll_objecten() {
+    function getAll_objecten($groep) {
         $this->db->order_by('naam', 'asc');
+//        $this->db->where('groep',10);
         $query = $this->db->get('woorden');
         return $query->result();
     }
 
-    /*
-    function getAllSoortProduct()
-    {
-        $this->db->order_by('naam', 'asc');
-        $query = $this->db->get('bier_soort');
-        $soorten = $query->result();
-
-        $this->load->model('product_model');
-
-        foreach ($soorten as $soort) {
-            $soort->producten =
-                $this->product_model->getAllBySoort($soort->id);
-        }
-        return $soorten;
+    function getAnderWoord_AtRandom($woordId){
+        $this->db->where('id !=', $woordId);
+        $query = $this->db->get('woorden');
+        $andereWoorden = $query->result();
+        $randomGetal = rand(0,sizeof($andereWoorden)-1);
+        return $andereWoorden[$randomGetal];
     }
 
-    function insert($soort)
-    {
-        $this->db->insert('bier_soort', $soort);
-        return $this->db->insert_id();
-    }
 
-    function update($soort)
-    {
-        $this->db->where('id', $soort->id);
-        $this->db->update('bier_soort', $soort);
-    }
-
-    function delete($id)
-    {
-        $this->db->where('id', $id);
-        $this->db->delete('bier_soort');
-    }
-*/
 }
