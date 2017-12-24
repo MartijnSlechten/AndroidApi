@@ -45,7 +45,7 @@ class Meting_model extends CI_Model {
 
     function get_metingenOpNaam($zoekstring) {
         $this->db->where('nametingDatum is NOT NULL', NULL, FALSE);
-        $this->db->like('naam', $zoekstring, 'after');
+        $this->db->like('LOWER (naam)', strtolower($zoekstring), 'after');
         $this->db->order_by('id', 'desc');
         $query = $this->db->get('meting');
         return $query->result();

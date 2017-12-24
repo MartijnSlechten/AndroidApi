@@ -37,7 +37,10 @@ require_once('phpChart/conf.php'); // this must be include in every page that us
     <?php
 
     $min = array(array(2, 0.6), array(2, 4.4));
-    $maxCount = count($graphDataArray[0]);
+    $maxCount = $graphDataInfoA->aantalMetingen;
+    if($graphDataInfoB->aantalMetingen > $maxCount){
+        $maxCount = $graphDataInfoB->aantalMetingen;
+    }
 
     $pc = new C_PhpChartX($graphDataArray, 'basic_chart');
     //$pc->set_data_renderer("js::sineRenderer");
